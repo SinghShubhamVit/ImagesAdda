@@ -4,6 +4,7 @@ class Image < ApplicationRecord
 	has_many :likes
 	has_many :comments
 	belongs_to :tag
+	
 
 	has_many_attached :images
 

@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2020-02-27 13:12:21
+  total_amount: 1
+
+two:
+  date: 2020-02-27 13:12:21
+  total_amount: 1

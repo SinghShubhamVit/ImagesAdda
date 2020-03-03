@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_075115) do
+ActiveRecord::Schema.define(version: 2020_03_01_092440) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,15 +51,19 @@ ActiveRecord::Schema.define(version: 2020_02_27_075115) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "image_name"
+  create_table "image_infos", force: :cascade do |t|
+    t.string "img_name"
     t.string "img_type"
     t.text "description"
     t.integer "price"
     t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tag_id"], name: "index_images_on_tag_id"
+    t.integer "sub_category_id"
+    t.integer "user_id"
+    t.index ["sub_category_id"], name: "index_image_infos_on_sub_category_id"
+    t.index ["tag_id"], name: "index_image_infos_on_tag_id"
+    t.index ["user_id"], name: "index_image_infos_on_user_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -153,14 +157,16 @@ ActiveRecord::Schema.define(version: 2020_02_27_075115) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "images"
+  add_foreign_key "comments", "image_infos", column: "image_id"
   add_foreign_key "comments", "users"
-  add_foreign_key "images", "tags"
+  add_foreign_key "image_infos", "sub_categories"
+  add_foreign_key "image_infos", "tags"
+  add_foreign_key "image_infos", "users"
   add_foreign_key "invoices", "orders"
   add_foreign_key "invoices", "payments"
-  add_foreign_key "likes", "images"
+  add_foreign_key "likes", "image_infos", column: "image_id"
   add_foreign_key "likes", "users"
-  add_foreign_key "orders", "images"
+  add_foreign_key "orders", "image_infos", column: "image_id"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users"

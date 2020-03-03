@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+  <div class="row">
+    <% @image_infos.each do |image_info| %>
+      <div class="col-md-3">
+        <div class="card">
+          <%= image_tag image_info.image if image_info.image.present? %>
+          <div class="containers">
+            <div style="width:400px; height:100">
+            <h4><b><%= image_info.img_name %></b></h4> 
+            <h4><b><%= image_info.img_type %></b></h4> 
+            <p><%= image_info.description %></p>
+            <h4><b><%= image_info.price %></b></h4> 
+            <td><%= link_to 'Show', image_info %>   
+            <td><%= link_to 'Edit', edit_image_info_path(image_info) %>
+            <td><%= link_to 'Destroy', image_info, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div> 
+    </div>  
+    <% end %>
+  </div>  

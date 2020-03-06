@@ -1,0 +1,7 @@
+<% @sub_cat.each do |c| %>
+  sub_category.options[sub_category.options.length] = new Option('<%= c.sub_category_name%>', '<%= c.id %>')
+<% end %>
+
+<% @sub_category.each do |c| %>
+  sub_category_id.options[sub_category_id.options.length] = new Option('<%= c.sub_category_name%>', '<%= c.id %>')
+<% end %>

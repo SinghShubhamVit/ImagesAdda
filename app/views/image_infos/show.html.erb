@@ -20,10 +20,30 @@
   <%= @image_info.price %>
 </p>
 
+
+<p>
+	<strong>SubCategory:</strong>
+	<%= @sub_category.sub_category_name%>
+</p>	
+
+
 <p>
 <div style="width:400px; height:auto">
 <%= link_to image_tag(@image_info.image, style:'width:100%'),image_infos_path %>
-</p>  
+</p> 
+<p><%= @image_info.likes.count %> <%= (@image_info.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+
+  <div id ="likes">
+    <%= render partial: "likes" %>
+  </div> 
+
+
+<%#= render @image_info.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %> 
+
+
 
 <%= link_to 'Edit', edit_image_info_path(@image_info) %> |
 <%= link_to 'Back', image_infos_path %>

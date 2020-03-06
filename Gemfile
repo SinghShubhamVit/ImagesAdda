@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'jquery-rails'
 gem 'devise'
 gem 'authority'
 gem 'rolify'
@@ -30,6 +31,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'rubocop-rails', require: false
 # Use Active Storage variant
 gem 'mini_magick', '~> 4.8'
+gem 'bootstrap',  '~>4.3.1'
+
+
 
 # gem 'image_processing', '~> 1.2'
 

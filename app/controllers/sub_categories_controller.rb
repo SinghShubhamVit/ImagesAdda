@@ -1,5 +1,5 @@
 class SubCategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -8,9 +8,7 @@ class SubCategoriesController < ApplicationController
 
  
   def show
-     @category = Category.find(params[:id])
-     @categories = @category.subcategories
-     render :action => :index
+   @sub_category = SubCategory.find(@image_info.sub_category_id) 
   end
 
  
@@ -23,52 +21,39 @@ class SubCategoriesController < ApplicationController
   end
 
   def create
-     # category = Category.find(params[:sub_category_id])
-      #@sub_category = category.sub_category.new(sub_category_params)
-    @sub_category = SubCategory.new(sub_category_params)
+  # category = Category.find(params[:sub_category_id])
+  #@sub_category = category.sub_category.new(sub_category_params)
+    @sub_category = SubCategory.new(subcategory_params)
 
-    respond_to do |format|
-      if @sub_category.save
-        format.html { redirect_to @Sub_category, notice: 'subcategory was successfully created.' }
-        format.json { render :show, status: :created, location: @subcategory }
-      else
-        format.html { render :new }
-        format.json { render json: @sub_category.errors, status: :unprocessable_entity }
-      end
+    if @sub_category.save
+      redirect_to sub_categories_path, notice: "Subcategory was successfully created"    
+    else
+      render :new     
     end
   end
-
 
   def update
-    respond_to do |format|
-      if @sub_category.update(sub_category_params)
-        format.html { redirect_to @category, notice: 'Subcategory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subcategory }
-      else
-        format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+    if @sub_category.update(sub_category_params)
+      redirect_to @sub_category, notice: "Subcategory was successfully updated."       
+    else
+      render :edit     
     end
-  end
+ end
 
 
   def destroy
     @sub_category.destroy
-    respond_to do |format|
-      format.html { redirect_to subcategories_url, notice: 'Subcategory was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to sub_categories_path(@sub_category), notice: "Subcategory was successfully destroyed."
   end
 
   private
    
-    def set_sub_category
-      @sub_category = Sub_Category.find(params[:id])
-    end
+    def set_subcategory
+      @sub_category = SubCategory.find(params[:id])
+    end  
 
-  
-
-    def sub_category_params
-      params.require(:sub_category).permit(:sub_category_name, :parent_id)
+    def subcategory_params
+      
+      params.require(:sub_category).permit(:category_id,:sub_category_name)
     end 
 end

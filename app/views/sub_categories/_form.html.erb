@@ -14,12 +14,12 @@
 
   <div class="field">
     <%= form.label :sub_category_name %>
-    <%= form.text_field :sub_category_name,class: "form-control" %>
+    <%= form.text_field :sub_category_name, class: "form-control" %><br/>
   </div>
 
    <div class="field">
     <%= form.label :category %>
-    <%= select_tag 'category_id', options_from_collection_for_select(Category.all, :id, :category_name), include_blank:"Select Category",class: "form-control" %><br/>
+    <%= form.select :category_id, options_from_collection_for_select(Category.all, :id, :category_name), include_blank:"Select Category", :onchange => "update_subscategories_div(this.value)" %><br/>
   </div>
 
     

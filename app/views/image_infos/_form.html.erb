@@ -1,16 +1,6 @@
 <% @image_info %>
-<%= form_with(model: @image_info, local: true) do |form| %>
-  <% if @image_info.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@image_info.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @image_info.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: @image_info) do |form| %>
+ 
 
   <div class="form-group">
     <%= form.label :img_name %>
@@ -34,7 +24,9 @@
  
     <div class="form-group">
     <%= form.label :category %>
-    <%= select_tag 'category_id', options_from_collection_for_select(Category.all, :id, :category_name), include_blank:"Select Category", :onchange => "update_subscategories_div(this.value)" %>
+    <%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :category_name), include_blank:"Select Category" %>
+
+  
     </div>
 
      <div class="form-group">

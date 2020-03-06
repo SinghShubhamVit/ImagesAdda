@@ -1,0 +1,5 @@
+<% @image.each do |e| %>
+<%= e.img_name %>
+<%= e.description %>
+<%= image_tag(e.image , style:'width:100%') if e.image.present? %>
+<% end %>

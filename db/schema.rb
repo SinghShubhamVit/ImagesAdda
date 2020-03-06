@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 2020_03_01_092440) do
     t.text "description"
     t.integer "price"
     t.integer "tag_id"
+    t.integer "user_id"
+    t.integer "sub_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sub_category_id"
-    t.integer "user_id"
     t.index ["sub_category_id"], name: "index_image_infos_on_sub_category_id"
     t.index ["tag_id"], name: "index_image_infos_on_tag_id"
     t.index ["user_id"], name: "index_image_infos_on_user_id"
@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 2020_03_01_092440) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "image_id"
+    t.integer "image_info_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["image_id"], name: "index_likes_on_image_id"
+    t.index ["image_info_id"], name: "index_likes_on_image_info_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 2020_03_01_092440) do
     t.integer "image_price"
     t.string "total_items"
     t.integer "user_id"
-    t.integer "image_id"
+    t.integer "image_info_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["image_id"], name: "index_orders_on_image_id"
+    t.index ["image_info_id"], name: "index_orders_on_image_info_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -164,9 +164,9 @@ ActiveRecord::Schema.define(version: 2020_03_01_092440) do
   add_foreign_key "image_infos", "users"
   add_foreign_key "invoices", "orders"
   add_foreign_key "invoices", "payments"
-  add_foreign_key "likes", "image_infos", column: "image_id"
+  add_foreign_key "likes", "image_infos"
   add_foreign_key "likes", "users"
-  add_foreign_key "orders", "image_infos", column: "image_id"
+  add_foreign_key "orders", "image_infos"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users"

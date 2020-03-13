@@ -1,0 +1,20 @@
+<!-- <%= render 'common', cart: @cart.line_items %> -->
+
+<article>
+
+<h2>Your Cart</h2>
+<h5>Time : <%= Time.now %></h5>
+<h5>Name : <%= @cart.user.firstname %></h5>
+<h5>Email : <%= @cart.user.email %></h5>
+<h5>Cart No : <%="#{@cart.id}."%> </h5>
+<hr>
+    <div id="cart_listing">
+        <%= render partial: "common", locals: { cart: @cart } %>
+    </div>
+    <% if !@cart.status %>
+        <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <hr>
+    <%= link_to 'back to Catalog', '/', class: "btn btn-info" %>
+    
+</article>

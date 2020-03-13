@@ -1,0 +1,20 @@
+<% if current_user.admin? %>
+
+	<p>
+	  <strong>ImageInfo:</strong>
+	  <%= @line_item.image_info_id %>
+	</p>
+
+	<p>
+	  <strong>Cart:</strong>
+	  <%= @line_item.cart_id %>
+	</p>
+
+	<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+	<%= link_to 'Back', line_items_path %>
+
+<% else %>
+	  <strong>Only admin has right to access.</strong>
+    <hr>
+  <%= link_to 'Back', '/', class: "btn btn-dark" %>
+<% end %>

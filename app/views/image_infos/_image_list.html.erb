@@ -1,0 +1,22 @@
+<% @image_infos.each do |image_info| %>      
+  <div class="card">
+    <div class="card-body p-1">
+      <%= image_tag image_info.image, class: 'd-block w-100' %>        
+      <h4><b><%= image_info.img_name %></b></h4> 
+      <h4><b><%= image_info.img_type %></b></h4> 
+      <h4><b><%= image_info.price %></b></h4>
+      <p><%= image_info.likes.count %> <%= (image_info.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+      <% pre_like = image_info.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', image_info_like_path(image_info, pre_like), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', image_info_likes_path(image_info), method: :post %>
+      <% end %>
+
+      <td><%= button_to 'Add to Cart', line_items_path(image_info_id: @image_info) %></td>  
+      <td><%= link_to 'Show', image_info %>   
+      <td><%= link_to 'Edit', edit_image_info_path(image_info) %>
+      <td><%= link_to 'Destroy', image_info, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div> 
+  </div>  
+<% end %>

@@ -10,6 +10,10 @@ require("channels")
 // require ("jquery-ui")
 require("packs/image_info")
 
+window.jQuery = $;
+window.$ = $;
+
+
 
 // import "bootstrap";
 // import "../stylesheets/application";

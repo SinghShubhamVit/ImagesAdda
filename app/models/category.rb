@@ -1,4 +1,7 @@
-class Category < ApplicationRecord
-	has_many :sub_categories, :dependent => :destroy	
+# frozen_string_literal: true
 
+class Category < ApplicationRecord
+  has_many :sub_categories, dependent: :destroy
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

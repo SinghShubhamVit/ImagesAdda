@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RenameImageToImageInfo < ActiveRecord::Migration[6.0]
-	def change
-		rename_table :images, :image_infos
+  def change
+    rename_table :images, :image_infos
   end
 end

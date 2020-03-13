@@ -13,6 +13,17 @@ document.addEventListener("turbolinks:load", function(){
           })
     });
 
+    $("#sub_category").on("change", function() {
+      category_id = $(this).val()
+      params = {sub_category_id: category_id}
+      $.ajax({
+        url: "/image_infos",
+        type: "GET",
+        dataType: 'script',
+        data: params
+      })
+    });    
+
      var category = document.getElementById("category_id");
     var sub_category = document.getElementById("sub_category_id");
   

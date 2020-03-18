@@ -1,20 +1,31 @@
-<!-- <%= render 'common', cart: @cart.line_items %> -->
 
-<article>
+
+<div class="keep-shopping pv1 mt4 has-text-right">
+	<%= link_to 'keep-shopping',image_infos_path, class: 'button is-warning'%>
+</div>
 
 <h2>Your Cart</h2>
 <h5>Time : <%= Time.now %></h5>
 <h5>Name : <%= @cart.user.firstname %></h5>
 <h5>Email : <%= @cart.user.email %></h5>
 <h5>Cart No : <%="#{@cart.id}."%> </h5>
-<hr>
-    <div id="cart_listing">
-        <%= render partial: "common", locals: { cart: @cart } %>
+ 
+<section class ="section">
+	<%= render partial: "line_item", locals: {cart: @cart } %>
+
+
+	<div class ="columns">
+		<div class ="column">
+      <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' },class: 
+      "button is-danger" %>
     </div>
-    <% if !@cart.status %>
-        <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    <hr>
-    <%= link_to 'back to Catalog', '/', class: "btn btn-info" %>
+     <%= button_to 'Checkout', checkout_cart_path(@cart), method: :get  %>
+    <div class ="column total has-text-right">
+      <h4 class = "title is-4">
+      	<span class ="column total has-text-middle">Total:</span> <%= @cart.total_price %> INR</>
+      </h4>
+    </div>  
+  </div>
+</section>  
+<%= button_to 'Add More Images','/', method: :get %>  
     
-</article>

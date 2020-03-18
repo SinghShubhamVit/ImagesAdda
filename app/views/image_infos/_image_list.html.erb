@@ -13,10 +13,13 @@
         <%= button_to 'Like', image_info_likes_path(image_info), method: :post %>
       <% end %>
 
-      <td><%= button_to 'Add to Cart', line_items_path(image_info_id: @image_info) %></td>  
-      <td><%= link_to 'Show', image_info %>   
-      <td><%= link_to 'Edit', edit_image_info_path(image_info) %>
-      <td><%= link_to 'Destroy', image_info, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <td><%= button_to 'Add to Cart', line_items_path(image_info_id: image_info) %></td> 
+
+      <% if image_info.user_id == current_user.id %> 
+        <td><%= link_to 'Show', image_info %>   
+        <td><%= link_to 'Edit', edit_image_info_path(image_info) %>
+        <td><%= link_to 'Destroy', image_info, method: :delete, data: { confirm: 'Are you sure?' } %>        
+      <% end %>  
     </div> 
   </div>  
 <% end %>

@@ -47,9 +47,7 @@
   <h2> Add Comments here </h2>
   <%= render 'comments/form' %>
 
-  
-
-
-
-<%= link_to 'Edit', edit_image_info_path(@image_info) %> |
-<%= link_to 'Back', image_infos_path %>
+  <% if @image_info.user_id == current_user.id %> 
+    <%= link_to 'Edit', edit_image_info_path(@imageinfo) %> |
+    <%= link_to 'Back', image_infos_path %>
+  <% end %>  

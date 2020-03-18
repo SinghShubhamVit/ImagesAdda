@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :line_items
   resources :carts do
     get 'user_carts', on: :collection, action: :user_carts, as: :user_carts
+    get 'checkout', on: :member, action: :checkout, as: :checkout
   end
 
   get 'categories/sub' => 'categories#sub', as: :sub

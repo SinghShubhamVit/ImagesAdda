@@ -1,0 +1,48 @@
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+ 
+<div>
+   <a class="navbar-brand"href="/">The ImagesAdda</a>
+  
+
+  <% if user_signed_in? %>
+  <% if current_user.has_role?:admin%>
+  <%= link_to "Categories", categories_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <%= link_to  "SubCategory", sub_categories_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <%= link_to "User_info", users_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+
+  <%end%>
+  <% end%>
+ 
+  
+   <% if current_user %>
+   <%= link_to 'your Carts',user_carts_carts_path, class: "btn btn-outline-success my-2 my-sm-0" %>  
+
+   <%= select_tag "category", options_from_collection_for_select(Category.all, :id, :category_name), include_blank:"Select Category" %>
+
+    <%= select_tag "sub_category", options_from_collection_for_select(SubCategory.all, :id, :sub_category_name), include_blank:"Select SubCategory" %>
+
+   
+    <%= link_to 'Your Uploads', your_uploads_path , class: "btn btn-outline-success my-2 my-sm-0" %>  
+    <%= link_to 'Upload Image', new_image_info_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+
+
+    <%= link_to 'Edit profile',edit_user_registration_path, class: "btn btn-outline-success my-2 my-sm-0" %>  
+    
+    <%= link_to 'Sign out',destroy_user_session_path, method: :delete, class: "btn btn-outline-success my-2 my-sm-0" %>  
+    <% else %>
+    <%= link_to 'Create an Account',new_user_registration_path, class: "btn btn-outline-success my-2 my-sm-0" %>  
+    <%= link_to 'Sign In',user_session_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+    <h1> <%#= current_user.firstname %></h1>  
+    <% end %>
+     
+     <div class="d-flex justify-content-right">
+        <div class="p-2 ">
+     <%= session[:current_user_email] %>
+     </div>
+     </div>
+
+     <form class="form-inline my-2 my-lg-0">
+     <!-- search -->
+   </form>
+
+  </nav>

@@ -1,0 +1,42 @@
+
+
+<h1></h1>
+
+<table>
+  <thead>
+    <tr>
+    	<th></th>
+      <th>Content</th>
+      <th style="padding-left: 35px;">&nbsp;</th>   
+      <th>Price</th>
+      
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart.line_items.each do |line_item| %>
+      <tr>
+        <td style="padding-right: 20px"><%= line_item.image_info.img_name %></td>
+        <td>
+        <div style="width:150px; height:auto">
+          <%=  image_tag line_item.image_info.image, style:'width:100%' %>
+        </div>
+      </td>
+      <td style="padding-left: 35px;"></td>
+        <td style="padding-right: 30px"><%= line_item.image_info.price %> INR</></td>
+        
+ 
+        <td style="padding-right: 30px"><%= button_to 'Remove Item', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+ <% if user_signed_in? %>
+  <h1>All Users</h1>
+  
+  <br>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>User ID</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>email</th>
+        <th>Phone</th>
+        <th>country</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname%></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.country%></td>
+         <td><%= link_to 'Delete Profile',user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  
+  <%= link_to 'Back to index','/' %> 
+
+  <% if current_user %>
+  | <%= link_to 'New Image', new_image_info_path %>
+  <% end %>
+
+<% else %>
+  <h1> Please Sign in first <h2>
+  <%end%>

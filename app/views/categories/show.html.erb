@@ -1,0 +1,20 @@
+<h1>Categories show</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.category_name %>
+</p>
+
+<p>
+  <strong>CatType:</strong>
+  <%= @category.cat_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @category.description %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

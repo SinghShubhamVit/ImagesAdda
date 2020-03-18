@@ -1,0 +1,12 @@
+<% if current_user.admin? %>
+    <h1>Editing Line Item</h1>
+
+    <%= render 'form', line_item: @line_item %>
+
+    <%= link_to 'Show', @line_item %> |
+    <%= link_to 'Back', line_items_path %>
+<% else %>
+  <strong>Only admin has right to access.</strong>
+  <hr>
+  <%= link_to 'Back', '/', class: "btn btn-dark" %>
+<% end %>

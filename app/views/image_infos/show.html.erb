@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Img name:</strong>
+  <%= @image_info.img_name %>
+</p>
+
+<p>
+  <strong>Img type:</strong>
+  <%= @image_info.img_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @image_info.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @image_info.price %>
+</p>
+
+
+<p>
+	<strong>SubCategory:</strong>
+	<%= @sub_category.sub_category_name%>
+</p>	
+
+
+<p>
+<div style="width:400px; height:auto">
+<%= link_to image_tag(@image_info.image, style:'width:100%'),image_infos_path %>
+</div>
+</p> 
+<p><%= @image_info.likes.count %> <%= (@image_info.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+<%= button_to 'Like', image_info_likes_path(@image_info.id), method: :post %>
+
+  <div id ="likes">
+    <%= render partial: "likes" %>
+  </div> 
+
+ <hr>
+  <h2>Comments</h2>
+   <%= render @image_info.comments %>
+   <hr>
+
+  <h2> Add Comments here </h2>
+  <%= render 'comments/form' %>
+
+  <% if @image_info.user_id == current_user.id %> 
+    <%= link_to 'Edit', edit_image_info_path(@imageinfo) %> |
+    <%= link_to 'Back', image_infos_path %>
+  <% end %>  

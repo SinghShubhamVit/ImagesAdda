@@ -1,0 +1,14 @@
+ <p> 
+	 <strong>Commenter : </strong>
+	 <%= User.find(comment.user_id).firstname %>
+	  </p>
+
+	  <p>
+	    <strong>Comment:</strong>
+	    <%= comment.content %>
+    <% if current_user && current_user.roles == 'admin' %>
+	    <%= button_to 'Destroy Comment', [comment.image_info, comment],
+	    method: :delete,
+	    data: { confirm: 'Are you sure?' } %> 
+	  </p>
+	<% end %>
